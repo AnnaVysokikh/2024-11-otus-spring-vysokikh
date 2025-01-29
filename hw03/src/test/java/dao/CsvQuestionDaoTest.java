@@ -60,8 +60,8 @@ public class CsvQuestionDaoTest {
 
     private static Question getTestData() {
         List<Answer> answers = new ArrayList<>();
-        answers.add(new Answer("yes", true));
-        answers.add(new Answer("no", false));
+        answers.add(new Answer("Yes", true));
+        answers.add(new Answer("No", false));
         return new Question("Does the bear sleep in winter?", answers);
     }
 
