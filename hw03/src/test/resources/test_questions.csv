@@ -1,2 +1,2 @@
 # Добавить сюда своих вопросов. Эту строку надо пропустить при настройке CsvToBean (withSkipLines)
-Does the bear sleep in winter?; No%false| Yes%true
+Does the bear sleep in winter?;Yes%true|No%false

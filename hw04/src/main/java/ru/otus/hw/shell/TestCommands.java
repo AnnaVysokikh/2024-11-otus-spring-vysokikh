@@ -25,7 +25,8 @@ public class TestCommands {
     private final StudentService studentService;
 
     @ShellMethod(value = "Login command", key = {"l", "login"})
-    public String login(@ShellOption(defaultValue = "AnyUser") String userName,@ShellOption(defaultValue = " ") String userLastName) {
+    public String login(@ShellOption(defaultValue = "AnyUser") String userName,
+                        @ShellOption(defaultValue = " ") String userLastName) {
         loginContext.login(userName, userLastName);
         return String.format("Добро пожаловать: %s %s", userName, userLastName);
     }
