@@ -47,7 +47,6 @@ public class CommentServiceImpl implements CommentService {
         } else {
             throw new EntityNotFoundException("Comment with id %d not found".formatted(id));
         }
-
     }
 
     @Transactional
