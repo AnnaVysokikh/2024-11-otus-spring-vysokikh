@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Сервис работы с книгами должен ")
 @DataJpaTest
-@Transactional(propagation = Propagation.NOT_SUPPORTED)
+@Transactional(propagation = Propagation.NEVER)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @Import({BookServiceImpl.class})
 public class BookServiceImplTest {
@@ -44,6 +44,21 @@ public class BookServiceImplTest {
         return List.of(new Genre(1L, "Genre_1"), new Genre(2L, "Genre_2"));
     }
 
+    private static final Author AUTHOR_1 = new Author(1, "Author_1");
+    private static final Author AUTHOR_2 = new Author(2, "Author_2");
+    private static final Author AUTHOR_3 = new Author(3, "Author_3");
+
+    private static final Genre GENRE_1 = new Genre(1, "Genre_1");
+    private static final Genre GENRE_2 = new Genre(2, "Genre_2");
+    private static final Genre GENRE_3 = new Genre(3, "Genre_3");
+    private static final Genre GENRE_4 = new Genre(4, "Genre_4");
+    private static final Genre GENRE_5 = new Genre(5, "Genre_5");
+    private static final Genre GENRE_6 = new Genre(6, "Genre_6");
+
+    private static final Book BOOK_1 = new Book(1, "BookTitle_1", AUTHOR_1, List.of(GENRE_1, GENRE_2));
+    private static final Book BOOK_2 = new Book(2, "BookTitle_2", AUTHOR_2, List.of(GENRE_3, GENRE_4));
+    private static final Book BOOK_3 = new Book(3, "BookTitle_3", AUTHOR_3, List.of(GENRE_5, GENRE_6));
+
     @Test
     @DisplayName(" вернуть корректную книгу по id")
     public void shouldReturnCorrectBookById() {
@@ -61,10 +76,13 @@ public class BookServiceImplTest {
     @Test
     void shouldReturnCorrectBooksList() {
         var actualBooks = bookService.findAll();
+        List<Book> expectedBooks = List.of(BOOK_1, BOOK_2, BOOK_3);
 
         assertThat(actualBooks).isNotEmpty()
                 .hasSize(3)
-                .hasOnlyElementsOfType(Book.class);
+                .hasOnlyElementsOfType(Book.class)
+                .usingRecursiveComparison()
+                .isEqualTo(expectedBooks);
     }
 
     @DisplayName("должен сохранять новую книгу")
