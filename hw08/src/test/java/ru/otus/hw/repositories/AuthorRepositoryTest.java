@@ -35,7 +35,6 @@ class AuthorRepositoryTest {
     void shouldReturnCorrectAuthorsList() {
         var actualAuthors = authorRepository.findAll();
         var expectedAuthors = mongoTemplate.findAll(Author.class);
-        ;
 
         assertThat(actualAuthors.size()).isEqualTo(expectedAuthors.size());
         assertThat(actualAuthors).hasOnlyElementsOfType(Author.class);
