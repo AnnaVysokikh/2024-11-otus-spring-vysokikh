@@ -73,7 +73,7 @@ public class CommentServiceImplTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     @Test
     void insertTest() {
-        var expectedComment = new CommentDto(4, "Message_4", bookDtos.get(0));
+        var expectedComment = new CommentDto(4L, "Message_4", bookDtos.get(0));
 
         var returnedComment = service.insert("Message_4", 1);
 

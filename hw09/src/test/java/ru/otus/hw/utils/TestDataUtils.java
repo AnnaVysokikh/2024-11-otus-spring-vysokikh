@@ -8,32 +8,32 @@ import ru.otus.hw.dto.CommentDto;
 import ru.otus.hw.dto.GenreDto;
 
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TestDataUtils {
 
     public static List<AuthorDto> getAuthorDtos() {
-        return IntStream.range(1, 4).boxed()
+        return LongStream.range(1, 4).boxed()
                 .map(id -> new AuthorDto(id, "Author_" + id))
                 .toList();
     }
 
     public static List<GenreDto> getGenreDtos() {
-        return IntStream.range(1, 4).boxed()
+        return LongStream.range(1, 4).boxed()
                 .map(id -> new GenreDto(id, "Genre_" + id))
                 .toList();
     }
 
 
     public static List<BookDto> getBookDtos(List<AuthorDto> dbAuthors, List<GenreDto> dbGenres) {
-        return IntStream.range(1, 4).boxed()
-                .map(id -> new BookDto(id, "BookTitle_" + id, dbAuthors.get(id - 1), dbGenres.get(id - 1)))
+        return LongStream.range(1, 4).boxed()
+                .map(id -> new BookDto(id, "BookTitle_" + id, dbAuthors.get(Math.toIntExact(id - 1)), dbGenres.get(Math.toIntExact(id - 1))))
                 .toList();
     }
 
     public static List<BookDto> getBookDtos() {
-        List<AuthorDto> dbAuthors = IntStream.range(1, 4).boxed()
+        List<AuthorDto> dbAuthors = LongStream.range(1, 4).boxed()
                 .map(id -> new AuthorDto(id, "Author_" + id))
                 .toList();
         var dbGenres = getGenreDtos();
@@ -46,8 +46,8 @@ public class TestDataUtils {
     }
 
     public static List<CommentDto> getCommentDtos(List<BookDto> dbBooks) {
-        return IntStream.range(1, 4).boxed()
-                .map(id -> new CommentDto(id, "Message_" + id, dbBooks.get(id - 1)))
+        return LongStream.range(1, 4).boxed()
+                .map(id -> new CommentDto(id, "Message_" + id, dbBooks.get(Math.toIntExact(id - 1))))
                 .toList();
     }
 }

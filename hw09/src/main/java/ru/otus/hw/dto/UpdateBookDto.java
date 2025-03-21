@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BookDto {
+public class UpdateBookDto {
     private Long id;
 
     @NotBlank(message = "Укажите заголовок")
     private String title;
 
     @NotNull(message = "Выберите автора")
-    private AuthorDto authorDto;
+    private Long authorId;
 
     @NotNull(message = "Выберите жанр")
-    private GenreDto genreDto;
+    private Long genreId;
 }

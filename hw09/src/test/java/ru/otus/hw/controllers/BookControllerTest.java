@@ -1,11 +1,18 @@
 package ru.otus.hw.controllers;
 
 import lombok.SneakyThrows;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.otus.hw.dto.AuthorDto;
+import ru.otus.hw.dto.BookDto;
+import ru.otus.hw.dto.GenreDto;
+import ru.otus.hw.dto.UpdateBookDto;
+import ru.otus.hw.exceptions.NotFoundException;
 import ru.otus.hw.services.AuthorService;
 import ru.otus.hw.services.BookService;
 import ru.otus.hw.services.GenreService;
@@ -39,8 +46,7 @@ public class BookControllerTest {
     private GenreService genreService;
 
     @Test
-    @SneakyThrows
-    public void getAllTest() {
+    public void getAllTest() throws Exception {
         when(bookService.findAll()).thenReturn(getBookDtos());
 
         mvc.perform(get("/books"))
@@ -53,8 +59,8 @@ public class BookControllerTest {
     }
 
     @Test
-    @SneakyThrows
-    public void getByIdTest() {
+
+    public void getByIdTest() throws Exception {
         when(bookService.findById(1)).thenReturn(getBookDtos().get(0));
 
         mvc.perform(get("/books/1"))
@@ -64,8 +70,7 @@ public class BookControllerTest {
     }
 
     @Test
-    @SneakyThrows
-    public void updateTest() {
+    public void updateTest() throws Exception {
         when(bookService.findById(1)).thenReturn(getBookDtos().get(0));
         when(authorService.findAll()).thenReturn(getAuthorDtos());
         when(genreService.findAll()).thenReturn(getGenreDtos());
@@ -86,8 +91,7 @@ public class BookControllerTest {
     }
 
     @Test
-    @SneakyThrows
-    public void saveTest() {
+    public void saveTest() throws Exception {
         mvc.perform(post("/books/update")
                         .param("id", "1")
                         .param("title", "test_title")
@@ -98,8 +102,7 @@ public class BookControllerTest {
     }
 
     @Test
-    @SneakyThrows
-    public void saveTest_ConstrainValidation() {
+    public void saveTest_ConstrainValidation() throws Exception {
         mvc.perform(post("/books/update")
                         .param("id", "1")
                         .param("title", "")
@@ -110,8 +113,7 @@ public class BookControllerTest {
     }
 
     @Test
-    @SneakyThrows
-    public void createTest() {
+    public void createTest() throws Exception {
         mvc.perform(get("/books/create"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("book"))
@@ -121,10 +123,9 @@ public class BookControllerTest {
     }
 
     @Test
-    @SneakyThrows
-    public void deleteTest() {
+    public void deleteTest() throws Exception {
         mvc.perform(post("/books/delete")
-                        .param("id", "1"))
+                .param("id", "1"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/books"));
     }

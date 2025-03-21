@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.otus.hw.dto.BookDto;
-import ru.otus.hw.dto.ShortBookDto;
+import ru.otus.hw.dto.CreateBookDto;
+import ru.otus.hw.dto.UpdateBookDto;
 import ru.otus.hw.services.AuthorService;
 import ru.otus.hw.services.BookService;
 import ru.otus.hw.services.GenreService;
@@ -56,8 +57,10 @@ public class BookController {
     }
 
     @PostMapping("/books/update")
-    public String save(@Valid @ModelAttribute("book") ShortBookDto book, BindingResult bindingResult) {
+    public String save(@Valid @ModelAttribute("book") UpdateBookDto book, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("genres", genreService.findAll());
+            model.addAttribute("authors", authorService.findAll());
             return "update";
         }
 
@@ -67,15 +70,17 @@ public class BookController {
 
     @GetMapping("/books/create")
     public String create(Model model) {
-        model.addAttribute("book", new ShortBookDto());
+        model.addAttribute("book", new BookDto());
         model.addAttribute("authors", authorService.findAll());
         model.addAttribute("genres", genreService.findAll());
         return "create";
     }
 
     @PostMapping("/books/create")
-    public String create(@Valid @ModelAttribute("book") ShortBookDto book, BindingResult bindingResult) {
+    public String create(@Valid @ModelAttribute("book") CreateBookDto book, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("genres", genreService.findAll());
+            model.addAttribute("authors", authorService.findAll());
             return "create";
         }
         bookService.insert(book.getTitle(), book.getAuthorId(), book.getGenreId());
