@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.otus.hw.dto.BookDto;
-import ru.otus.hw.dto.ShortBookDto;
+import ru.otus.hw.dto.CreateBookDto;
+import ru.otus.hw.dto.UpdateBookDto;
 import ru.otus.hw.services.BookService;
 
 import java.util.List;
@@ -35,13 +36,13 @@ public class BookController {
     }
 
     @PutMapping
-    public BookDto update(@Valid @RequestBody ShortBookDto book) {
+    public BookDto update(@Valid @RequestBody UpdateBookDto book) {
         return bookService.update(book.getId(), book.getTitle(), book.getAuthorId(), book.getGenreId());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public BookDto create(@Valid @RequestBody ShortBookDto book) {
+    public BookDto create(@Valid @RequestBody CreateBookDto book) {
         return bookService.insert(book.getTitle(), book.getAuthorId(), book.getGenreId());
     }
 

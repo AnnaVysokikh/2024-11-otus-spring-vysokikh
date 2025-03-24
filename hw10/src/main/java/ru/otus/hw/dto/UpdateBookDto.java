@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ShortBookDto {
+public class UpdateBookDto {
     private long id;
 
     @NotBlank(message = "Укажите заголовок")

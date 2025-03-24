@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import ru.otus.hw.dto.ShortBookDto;
+import ru.otus.hw.dto.UpdateBookDto;
 import ru.otus.hw.exceptions.NotFoundException;
 import ru.otus.hw.services.BookService;
 
@@ -66,7 +66,7 @@ public class BookControllerTest {
     @Test
     @SneakyThrows
     public void updateTest() {
-        ShortBookDto shortBookDto = new ShortBookDto(1, "BookTitle_1", 1L, 1L);
+        UpdateBookDto shortBookDto = new UpdateBookDto(1, "BookTitle_1", 1L, 1L);
         when(bookService.update(anyLong(), anyString(), anyLong(), anyLong())).thenReturn(getBookDtos().get(0));
 
         mvc.perform(put("/books")
@@ -79,7 +79,7 @@ public class BookControllerTest {
     @Test
     @SneakyThrows
     public void updateTest_InvalidBook_TitleIsEmpty() {
-        ShortBookDto shortBookDto = new ShortBookDto(1, "", 1L, 1L);
+        UpdateBookDto shortBookDto = new UpdateBookDto(1, "", 1L, 1L);
         when(bookService.update(anyLong(), anyString(), anyLong(), anyLong())).thenReturn(getBookDtos().get(0));
 
         mvc.perform(put("/books")
@@ -91,7 +91,7 @@ public class BookControllerTest {
     @Test
     @SneakyThrows
     public void createTest() {
-        ShortBookDto shortBookDto = new ShortBookDto(1, "BookTitle_1", 1L, 1L);
+        UpdateBookDto shortBookDto = new UpdateBookDto(1, "BookTitle_1", 1L, 1L);
         when(bookService.insert(anyString(), anyLong(), anyLong())).thenReturn(getBookDtos().get(0));
 
         mvc.perform(post("/books")
@@ -104,7 +104,7 @@ public class BookControllerTest {
     @Test
     @SneakyThrows
     public void createTest_InvalidBook_NoAuthor() {
-        ShortBookDto shortBookDto = new ShortBookDto(1, "BookTitle_1", null, 1L);
+        UpdateBookDto shortBookDto = new UpdateBookDto(1, "BookTitle_1", null, 1L);
         when(bookService.insert(anyString(), anyLong(), anyLong())).thenReturn(getBookDtos().get(0));
 
         mvc.perform(post("/books")

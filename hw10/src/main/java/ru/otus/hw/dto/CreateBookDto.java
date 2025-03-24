@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ShortBookDto {
-    private long id;
+public class CreateBookDto {
+    private Long id;
 
     @NotBlank(message = "Укажите заголовок")
     private String title;
