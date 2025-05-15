@@ -13,21 +13,16 @@ spring:
       mode: always
       data-locations: classpath:db/data.sql
       schema-locations: classpath:db/schema.sql
-resilience4j:
-  ratelimiter:
-    instances:
-      rateLimiter:
-        limit-for-period: 1
-        limit-refresh-period: 5s
-        timeout-duration: 0
-  circuitbreaker:
-    instances:
-      circuitBreaker:
-        slidingWindowSize: 3
-        minimumNumberOfCalls: 2
-        permittedNumberOfCallsInHalfOpenState: 3
-        waitDurationInOpenState: 5s
-        automaticTransitionFromOpenToHalfOpenEnabled: true
-        failureRateThreshold: 50
-        slowCallDurationThreshold: 1s
-        slowCallRateThreshold: 30
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 5s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 50
+  instances:
+    serviceCircuitBreaker:
+      baseConfig: default

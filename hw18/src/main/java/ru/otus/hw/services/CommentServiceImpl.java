@@ -1,5 +1,6 @@
 package ru.otus.hw.services;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Transactional(readOnly = true)
     @Override
+    @CircuitBreaker(name = "serviceCircuitBreaker")
     public CommentDto findById(long id) {
         Comment comment = commentRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException(String.format("Не удалось получить комментарий по id: %s", id)));
@@ -32,6 +34,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional(readOnly = true)
+    @CircuitBreaker(name = "serviceCircuitBreaker")
     public List<CommentDto> findAllByBookId(long bookId) {
         return commentRepository
                 .findAllByBookId(bookId)
@@ -54,6 +57,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional
+    @CircuitBreaker(name = "serviceCircuitBreaker")
     public void deleteById(long id) {
         commentRepository.deleteById(id);
     }
