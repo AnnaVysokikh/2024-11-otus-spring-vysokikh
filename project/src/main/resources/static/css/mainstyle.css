@@ -1,0 +1,188 @@
+html {
+    width: 100%;
+    margin: 0;
+}
+
+.header-title {
+    height: 40px;
+}
+
+.header-welcome {
+    height: 20px;
+}
+
+.container {
+    height: 834px;
+    display: flex;
+}
+
+.div-list-books {
+    width: 15%;
+    background-color: #f6f6f6;
+    overflow-y: auto;
+}
+
+.button-add-category {
+    display: inline-block;
+    border-radius: 2px;
+    background-color: transparent;
+    border: 2px solid #3caea3;
+    color: #caea3;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px 5px 5px 0px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button-add-category:hover {
+
+}
+
+.main {
+    width: 65%;
+    background-color: #f6f6f6;
+    padding: 4px;
+}
+
+.div-right {
+    width: 20%;
+}
+
+.ul-marker {
+    margin: 0px 0px 0px -20px;
+    flex-wrap: wrap;
+    list-style: none;
+    text-indent: -1em;
+    cursor: pointer;
+}
+
+.li-marker::before {
+    list-style: none;
+    padding-right: 3px;
+    color: grey;
+}
+
+.li-marker-child::before {
+    content: '-';
+}
+
+.text-noclick {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    flex-wrap: wrap;
+}
+
+.text-title {
+    font-size: 18px;
+    font-weight: bold;
+    flex-wrap: wrap;
+}
+
+.text-parent {
+    font-size: 18px;
+    font-weight: normal;
+    flex-wrap: wrap;
+}
+
+.text-noclick {
+    text-decoration: none;
+    color: black;
+}
+
+.text-a-hover:hover {
+    word-break: break-all;
+}
+
+.button-delete {
+    margin-left: 4px;
+    border: none;
+    background-color: #f6f6f6;
+    cursor: pointer;
+}
+
+.button-delete-document {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    margin-left: -4px;
+    font-size: 18px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.button-delete-document:hover {
+
+}
+
+.button-delete:hover{
+    background-color: #f6f6f6;
+}
+
+.button-all-document {
+    color: black;
+    border: none;
+    background-color: #f6f6f6;
+    cursor: pointer;
+}
+
+.button-all-document:hover {
+}
+
+/*ВЕРТИКАЛЬНЫЙ РАЗДЕЛИТЕЛЬ*/
+.vertical-line-left {
+    width: 6px;
+    background-color: #B4B5B6;
+}
+
+#form-search {
+    display: none;
+    height: 90px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 1px;
+    margin: 2px;
+    padding: 5px 2px 2px 2px;
+}
+
+.button-search {
+    display: inline-block;
+    border-radius: 2px;
+    background-color: transparent;
+    border: 2px solid #3caea3;
+    color: #caea3;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px 5px 5px 0px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button-search:hover {
+
+}
+
+#but-search span:after {
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    padding-right: 5px;
+    padding-left: 8px;
+}
+
+#but-search.chng span:after {
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    padding-right: 5px;
+    padding-left: 8px;
+    transform: rotate(90deg);
+}
+
+#table-search input{
+    height: 20px;
+    border-radius: 1px;
+}
